@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<style>
+			.monospace {
+				font-family: monospace;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="root"></div>
+		<script type="module" src="./panel.js"></script>
+		<p>moi</p>
+		<form id="speakerForm">
+			<label for="speaker">Puhujan nimi</label>
+			<input type="text" id="speaker" />
+
+			<button type="submit">Vaihda nimeä</button>
+		  </form>
+
+		  <form id="titleForm">
+			<label for="title">Puhujan titteli</label>
+			<input type="text" id="title" />
+			<button type="submit">Vaihda titteliä</button>
+
+
+
+		  <script>
+			const speakerRep = nodecg.Replicant("speakerReplicant");
+			const speaker = document.getElementById("speaker");
+			const titleRep = nodecg.Replicant("titleReplicant");
+			const title = document.getElementById("title");
+
+
+			speakerRep.on("change", (newValue, oldValue) => {
+			  console.log(`myRep changed from ${oldValue} to ${newValue}`);
+			  speaker.value = newValue;
+
+			  const speakerForm = document.getElementById("speakerForm");
+
+
+				speakerForm.addEventListener("submit", (e) => {
+				e.preventDefault;
+				speakerRep.value = speaker.value;
+				});
+
+			});
+
+			titleRep.on("change", (newValue, oldValue) => {
+			  console.log(`myRep changed from ${oldValue} to ${newValue}`);
+			  title.value = newValue;
+
+			  const titleForm = document.getElementById("titleForm");
+				titleForm.addEventListener("submit", (e) => {
+				e.preventDefault;
+				titleRep.value = title.value;
+				});
+
+			});
+
+
+
+		  </script>
+
+	</body>
+</html>

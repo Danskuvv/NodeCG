@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<style>
+			body {
+				font-family: sans-serif;
+			}
+
+			.monospace {
+				font-family: monospace;
+			}
+		</style>
+		<script type="module" src="./index.js"></script>
+	</head>
+	<body>
+
+
+
+
+		<p style="color: crimson; font-size: 300%;">
+			Puhujatieto:
+		</p>
+
+		<div id="puhuja" style="color: blueviolet; font-size: 700%;"> Faija mehiläinen</div>
+
+		<p style="color: crimson; font-size: 300%;">
+			Titteli:
+		</p>
+		<div id="titteli" style="color: blueviolet; font-size: 700%;">titteli</div>
+
+		<script>
+			const speakerRep = nodecg.Replicant("speakerReplicant");
+			const puhuja = document.getElementById("puhuja");
+			const titleRep = nodecg.Replicant("titleReplicant");
+			const titteli = document.getElementById("titteli");
+
+
+			speakerRep.on("change", (newValue, oldValue) => {
+			  console.log(`myRep changed from ${oldValue} to ${newValue}`);
+			  puhuja.innerHTML = newValue;
+			});
+
+			titleRep.on("change", (newValue, oldValue) => {
+			  console.log(`myRep changed from ${oldValue} to ${newValue}`);
+			  titteli.innerHTML = newValue;
+			});
+		</script>
+
+	</body>
+</html>
